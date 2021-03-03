@@ -22,6 +22,13 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
+import AccountCircle from "@material-ui/icons/AccountCircle"
+import MailIcon from "@material-ui/icons/Mail"
+import NotificationsIcon from "@material-ui/icons/Notifications"
+import MoreIcon from "@material-ui/icons/MoreVert"
+import Badge from "@material-ui/core/Badge"
+import MenuItem from "@material-ui/core/MenuItem"
+import Menu from "@material-ui/core/Menu"
 
 const drawerWidth = 240
 
@@ -138,7 +145,7 @@ const Copyright = () => {
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" to="/">
-        管理画面
+        job-speed.com
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -155,7 +162,9 @@ const GenericTemplate: React.FC<GenericTemplateProps> = ({
   children,
   title,
 }) => {
+  const [anchorEl, setAnchorEl] = React.useState(null)
   const classes = useStyles()
+  const isMenuOpen = Boolean(anchorEl)
   const [open, setOpen] = React.useState(true)
   const handleDrawerOpen = () => {
     setOpen(true)
@@ -163,6 +172,27 @@ const GenericTemplate: React.FC<GenericTemplateProps> = ({
   const handleDrawerClose = () => {
     setOpen(false)
   }
+  const handleProfileMenuOpen = (event: any) => {
+    setAnchorEl(event.currentTarget)
+  }
+  const handleMenuClose = () => {
+    setAnchorEl(null)
+  }
+  const menuId = "primary-search-account-menu"
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      id={menuId}
+      keepMounted
+      transformOrigin={{ vertical: "top", horizontal: "right" }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+    </Menu>
+  )
 
   return (
     <ThemeProvider theme={theme}>
@@ -192,10 +222,31 @@ const GenericTemplate: React.FC<GenericTemplateProps> = ({
               noWrap
               className={classes.title}
             >
-              管理画面
+              Practice Partner
             </Typography>
+            <IconButton aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <MailIcon />
+              </Badge>
+            </IconButton>
+            <IconButton aria-label="show 17 new notifications" color="inherit">
+              <Badge badgeContent={17} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
           </Toolbar>
         </AppBar>
+        {renderMenu}
         <Drawer
           variant="permanent"
           classes={{
