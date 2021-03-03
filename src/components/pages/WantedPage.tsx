@@ -8,22 +8,21 @@ import TableContainer from "@material-ui/core/TableContainer"
 import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
+import Button from "@material-ui/core/Button"
 
 const createData = (
-  name: string,
-  category: string,
-  weight: number,
-  price: number
+  id: number,
+  title: string,
+  body: string,
+  requiredNum: number,
+  applicationNum: number
 ) => {
-  return { name, category, weight, price }
+  return { id, title, body, requiredNum, applicationNum }
 }
 
 const rows = [
-  createData("チョコレート", "お菓子", 100, 120),
-  createData("ケーキ", "お菓子", 400, 480),
-  createData("りんご", "フルーツ", 500, 360),
-  createData("バナナ", "フルーツ", 200, 300),
-  createData("みかん", "フルーツ", 250, 180),
+  createData(1, "AAAの件", "Aの回収", 10, 5),
+  createData(2, "BBBの件", "Bの回収", 15, 3),
 ]
 
 const useStyles = makeStyles({
@@ -41,21 +40,30 @@ const ProductPage: React.FC = () => {
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>商品名</TableCell>
-              <TableCell align="right">カテゴリー</TableCell>
-              <TableCell align="right">重量(g)</TableCell>
-              <TableCell align="right">価格(円)</TableCell>
+              <TableCell align="left">ID</TableCell>
+              <TableCell align="right">タイトル</TableCell>
+              <TableCell align="right">内容</TableCell>
+              <TableCell align="right">必要数</TableCell>
+              <TableCell align="right">応募数</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell component="th" scope="row">
-                  {row.name}
+            {rows.map((row, index) => (
+              <TableRow key={index}>
+                <TableCell align="left">{row.id}</TableCell>
+                <TableCell component="th" scope="row" align="right">
+                  {row.title}
                 </TableCell>
-                <TableCell align="right">{row.category}</TableCell>
-                <TableCell align="right">{row.weight}</TableCell>
-                <TableCell align="right">{row.price}</TableCell>
+                <TableCell align="right">{row.body}</TableCell>
+                <TableCell align="right">{row.requiredNum}</TableCell>
+                <TableCell align="right">{row.applicationNum}</TableCell>
+                <TableCell align="center">
+                  <Button variant="contained">詳細</Button>
+                  <Button variant="contained" color="primary">
+                    応募
+                  </Button>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
