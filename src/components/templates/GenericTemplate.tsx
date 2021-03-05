@@ -18,7 +18,6 @@ import MenuIcon from "@material-ui/icons/Menu"
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft"
 import IconButton from "@material-ui/core/IconButton"
 import HomeIcon from "@material-ui/icons/Home"
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart"
 import ListItem from "@material-ui/core/ListItem"
 import ListItemIcon from "@material-ui/core/ListItemIcon"
 import ListItemText from "@material-ui/core/ListItemText"
@@ -29,6 +28,10 @@ import MoreIcon from "@material-ui/icons/MoreVert"
 import Badge from "@material-ui/core/Badge"
 import MenuItem from "@material-ui/core/MenuItem"
 import Menu from "@material-ui/core/Menu"
+import ListAltIcon from "@material-ui/icons/ListAlt"
+import CheckBoxIcon from "@material-ui/icons/CheckBox"
+import DirectionsCarIcon from "@material-ui/icons/DirectionsCar"
+import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward"
 
 const drawerWidth = 240
 
@@ -272,9 +275,33 @@ const GenericTemplate: React.FC<GenericTemplateProps> = ({
             <Link to="/wanteds" className={classes.link}>
               <ListItem button>
                 <ListItemIcon>
-                  <ShoppingCartIcon />
+                  <ListAltIcon />
                 </ListItemIcon>
                 <ListItemText primary="募集ページ" />
+              </ListItem>
+            </Link>
+            <Link to="/wanteds" className={classes.link}>
+              <ListItem button>
+                <ListItemIcon>
+                  <ArrowUpwardIcon />
+                </ListItemIcon>
+                <ListItemText primary="応募中リスト" />
+              </ListItem>
+            </Link>
+            <Link to="/wanteds" className={classes.link}>
+              <ListItem button>
+                <ListItemIcon>
+                  <DirectionsCarIcon />
+                </ListItemIcon>
+                <ListItemText primary="作業中リスト" />
+              </ListItem>
+            </Link>
+            <Link to="/wanteds" className={classes.link}>
+              <ListItem button>
+                <ListItemIcon>
+                  <CheckBoxIcon />
+                </ListItemIcon>
+                <ListItemText primary="完了済リスト" />
               </ListItem>
             </Link>
           </List>
