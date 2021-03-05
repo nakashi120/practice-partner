@@ -14,15 +14,16 @@ const createData = (
   id: number,
   title: string,
   body: string,
+  prefecture: string,
   requiredNum: number,
   applicationNum: number
 ) => {
-  return { id, title, body, requiredNum, applicationNum }
+  return { id, title, body, prefecture, requiredNum, applicationNum }
 }
 
 const rows = [
-  createData(1, "AAAの件", "Aの回収", 10, 5),
-  createData(2, "BBBの件", "Bの回収", 15, 3),
+  createData(1, "美容師の卵", "女性の髪を切る練習", "愛知県", 10, 5),
+  createData(2, "ネイリストの卵", "ネイルのモデル", "愛知県", 15, 3),
 ]
 
 const useStyles = makeStyles({
@@ -41,10 +42,11 @@ const ProductPage: React.FC = () => {
           <TableHead>
             <TableRow>
               <TableCell align="left">ID</TableCell>
-              <TableCell align="right">タイトル</TableCell>
-              <TableCell align="right">内容</TableCell>
-              <TableCell align="right">必要数</TableCell>
-              <TableCell align="right">応募数</TableCell>
+              <TableCell align="left">タイトル</TableCell>
+              <TableCell align="left">内容</TableCell>
+              <TableCell align="left">募集場所</TableCell>
+              <TableCell align="left">必要数</TableCell>
+              <TableCell align="left">応募数</TableCell>
               <TableCell></TableCell>
             </TableRow>
           </TableHead>
@@ -52,17 +54,15 @@ const ProductPage: React.FC = () => {
             {rows.map((row, index) => (
               <TableRow key={index}>
                 <TableCell align="left">{row.id}</TableCell>
-                <TableCell component="th" scope="row" align="right">
+                <TableCell component="th" scope="row" align="left">
                   {row.title}
                 </TableCell>
-                <TableCell align="right">{row.body}</TableCell>
-                <TableCell align="right">{row.requiredNum}</TableCell>
-                <TableCell align="right">{row.applicationNum}</TableCell>
+                <TableCell align="left">{row.body}</TableCell>
+                <TableCell align="left">{row.prefecture}</TableCell>
+                <TableCell align="left">{row.requiredNum}</TableCell>
+                <TableCell align="left">{row.applicationNum}</TableCell>
                 <TableCell align="center">
                   <Button variant="contained">詳細</Button>
-                  <Button variant="contained" color="primary">
-                    応募
-                  </Button>
                 </TableCell>
               </TableRow>
             ))}
