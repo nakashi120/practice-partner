@@ -10,6 +10,10 @@ import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import Button from "@material-ui/core/Button"
 
+const handleDetailButton = () => {
+  return alert("詳細ボタンがクリックされました。")
+}
+
 const createData = (
   id: number,
   title: string,
@@ -62,7 +66,9 @@ const ProductPage: React.FC = () => {
                 <TableCell align="left">{row.requiredNum}</TableCell>
                 <TableCell align="left">{row.applicationNum}</TableCell>
                 <TableCell align="center">
-                  <Button variant="contained">詳細</Button>
+                  <Button variant="contained" onClick={handleDetailButton}>
+                    詳細
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}

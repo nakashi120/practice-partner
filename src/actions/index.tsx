@@ -1,0 +1,1 @@
+export const SHOW_WANTED_DETAIL = "SHOW_WANTED_DETAIL"
