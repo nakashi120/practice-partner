@@ -1,5 +1,8 @@
 import React from "react"
 import GenericTemplate from "../templates/GenericTemplate"
+// import AppContext from "../../contexts/AppContext"
+import Wanted from "./Wanted"
+
 import { makeStyles } from "@material-ui/core/styles"
 import Table from "@material-ui/core/Table"
 import TableBody from "@material-ui/core/TableBody"
@@ -8,11 +11,6 @@ import TableContainer from "@material-ui/core/TableContainer"
 import TableHead from "@material-ui/core/TableHead"
 import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
-import Button from "@material-ui/core/Button"
-
-const handleDetailButton = () => {
-  return alert("詳細ボタンがクリックされました。")
-}
 
 const createData = (
   id: number,
@@ -25,7 +23,7 @@ const createData = (
   return { id, title, body, prefecture, requiredNum, applicationNum }
 }
 
-const rows = [
+const wanteds = [
   createData(1, "美容師の卵", "女性の髪を切る練習", "愛知県", 10, 5),
   createData(2, "ネイリストの卵", "ネイルのモデル", "愛知県", 15, 3),
 ]
@@ -36,7 +34,7 @@ const useStyles = makeStyles({
   },
 })
 
-const ProductPage: React.FC = () => {
+const WantedPage: React.FC = () => {
   const classes = useStyles()
 
   return (
@@ -55,22 +53,8 @@ const ProductPage: React.FC = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell align="left">{row.id}</TableCell>
-                <TableCell component="th" scope="row" align="left">
-                  {row.title}
-                </TableCell>
-                <TableCell align="left">{row.body}</TableCell>
-                <TableCell align="left">{row.prefecture}</TableCell>
-                <TableCell align="left">{row.requiredNum}</TableCell>
-                <TableCell align="left">{row.applicationNum}</TableCell>
-                <TableCell align="center">
-                  <Button variant="contained" onClick={handleDetailButton}>
-                    詳細
-                  </Button>
-                </TableCell>
-              </TableRow>
+            {wanteds.map((wanted, index) => (
+              <Wanted key={index} wanted={wanted} />
             ))}
           </TableBody>
         </Table>
@@ -79,4 +63,4 @@ const ProductPage: React.FC = () => {
   )
 }
 
-export default ProductPage
+export default WantedPage
