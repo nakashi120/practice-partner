@@ -5,6 +5,7 @@ import { Home } from "../components/pages/Home"
 import { Login } from "../components/pages/Login"
 import { Page404 } from "../components/pages/Page404"
 import { Setting } from "../components/pages/Setting"
+import { HeaderLayout } from "../components/templates/HeaderLayout"
 import { wantedsRoutes } from "./WantedsRoutes"
 
 export const Router: VFC = memo(() => {
@@ -14,7 +15,9 @@ export const Router: VFC = memo(() => {
         <Login />
       </Route>
       <Route path="/home">
-        <Home />
+        <HeaderLayout>
+          <Home />
+        </HeaderLayout>
       </Route>
       <Route
         path="/wanteds"
@@ -26,14 +29,16 @@ export const Router: VFC = memo(() => {
                 exact={route.exact}
                 path={`${url}${route.path}`}
               >
-                {route.children}
+                <HeaderLayout>{route.children}</HeaderLayout>
               </Route>
             ))}
           </Switch>
         )}
       />
       <Route path="/setting">
-        <Setting />
+        <HeaderLayout>
+          <Setting />
+        </HeaderLayout>
       </Route>
       <Route path="*">
         <Page404 />
