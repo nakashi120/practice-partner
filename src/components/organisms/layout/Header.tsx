@@ -1,22 +1,24 @@
-import { ChevronRightIcon } from "@chakra-ui/icons"
+import { memo, useCallback, VFC } from "react"
 import {
   Box,
-  Button,
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerOverlay,
   Flex,
   Heading,
-  IconButton,
   Link,
   Spacer,
   useDisclosure,
 } from "@chakra-ui/react"
-import { memo, VFC } from "react"
+import { useHistory } from "react-router-dom"
+
+import { MenuIconButton } from "../../atoms/button/MenuIconButton"
+import { MenuDrawer } from "../../molecules/MenuDrawer"
 
 export const Header: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const history = useHistory()
+
+  const onClickHome = useCallback(() => history.push("/home"), [history])
+  const onClickWanteds = useCallback(() => history.push("/wanteds"), [history])
+  const onClickSetting = useCallback(() => history.push("/setting"), [history])
 
   return (
     <>
@@ -28,19 +30,14 @@ export const Header: VFC = memo(() => {
         justify="space-between"
         padding={{ base: 3, md: 5 }}
       >
-        <IconButton
-          aria-label="サイドメニューボタン"
-          icon={<ChevronRightIcon />}
-          display={{ base: "block", md: "none" }}
-          variant="outline"
-          onClick={onOpen}
-        />
+        <MenuIconButton onOpen={onOpen} />
         <Flex
           align="baseline"
           as="a"
           mr={8}
           ml={5}
           _hover={{ cursor: "pointer" }}
+          onClick={onClickHome}
         >
           <Heading as="h1" fontSize={{ base: "md", md: "lg" }}>
             練習相手募集アプリ
@@ -53,23 +50,19 @@ export const Header: VFC = memo(() => {
           display={{ base: "none", md: "flex" }}
         >
           <Box pr={4}>
-            <Link>募集一覧</Link>
+            <Link onClick={onClickWanteds}>募集一覧</Link>
           </Box>
-          <Link>設定</Link>
+          <Link onClick={onClickSetting}>設定</Link>
         </Flex>
         <Spacer />
       </Flex>
-      <Drawer placement="left" size="xs" onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerBody p={0} bg="gray.100">
-              <Button w="100%">TOP</Button>
-              <Button w="100%">募集中案件一覧</Button>
-              <Button w="100%">設定</Button>
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+      <MenuDrawer
+        onClose={onClose}
+        isOpen={isOpen}
+        onClickHome={onClickHome}
+        onClickWanteds={onClickWanteds}
+        onClickSetting={onClickSetting}
+      />
     </>
   )
 })
