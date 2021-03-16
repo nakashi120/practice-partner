@@ -19,7 +19,13 @@ export const Login: VFC = memo(() => {
   return (
     <Flex align="center" justify="center" height="100vh">
       <Box bg="white" w="sm" p={4} borderRadius="md" shadow="md">
-        <Heading as="h1" size="lg" textAlign="center">
+        <Heading
+          as="h1"
+          size="lg"
+          textAlign="center"
+          fontSize="2xl"
+          color="gray.600"
+        >
           練習相手募集アプリ
         </Heading>
         <Divider my={4} />
@@ -37,6 +43,7 @@ export const Login: VFC = memo(() => {
                 h="1.75rem"
                 size="sm"
                 onClick={onClickShow}
+                color="gray.600"
               >
                 {show ? "非表示" : "表示"}
               </Button>
