@@ -1,16 +1,7 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Flex,
-  Heading,
-  Input,
-  InputGroup,
-  InputRightElement,
-  Stack,
-} from "@chakra-ui/react"
+import { Box, Divider, Flex, Heading, Input, Stack } from "@chakra-ui/react"
 import { memo, useState, VFC } from "react"
 import { PrimaryButton } from "../atoms/button/PrimaryButton"
+import { InputPassword } from "../atoms/input/InputPassword"
 
 export const Login: VFC = memo(() => {
   const [show, setShow] = useState(false)
@@ -32,24 +23,7 @@ export const Login: VFC = memo(() => {
         <Divider my={4} />
         <Stack spacing={4} py={4} px={10}>
           <Input placeholder="ユーザーID" pr={5} />
-          <InputGroup size="md">
-            <Input
-              pr="4.5rem"
-              type={show ? "text" : "password"}
-              placeholder="パスワード"
-            />
-            <InputRightElement width="5rem">
-              <Button
-                _hover={{ opacity: 0.8 }}
-                h="1.75rem"
-                size="sm"
-                onClick={onClickShow}
-                color="gray.600"
-              >
-                {show ? "非表示" : "表示"}
-              </Button>
-            </InputRightElement>
-          </InputGroup>
+          <InputPassword show={show} onClickShow={onClickShow}></InputPassword>
           <PrimaryButton>ログイン</PrimaryButton>
         </Stack>
       </Box>
