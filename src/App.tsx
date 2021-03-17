@@ -1,16 +1,16 @@
 import React from "react"
 import { ChakraProvider } from "@chakra-ui/react"
-import { BrowserRouter } from "react-router-dom"
 
 import theme from "./theme/theme"
 import { Router } from "./router/Router"
+import { WantedProvider } from "./providers/WantedProvider"
 
 const App: React.FC = () => {
   return (
     <ChakraProvider theme={theme}>
-      <BrowserRouter>
+      <WantedProvider>
         <Router />
-      </BrowserRouter>
+      </WantedProvider>
     </ChakraProvider>
   )
 }

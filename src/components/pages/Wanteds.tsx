@@ -5,7 +5,6 @@ import {
   CircularProgressLabel,
   Flex,
   Heading,
-  Progress,
   Table,
   Tbody,
   Td,
