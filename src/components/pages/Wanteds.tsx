@@ -13,9 +13,12 @@ import {
   Th,
   Thead,
   Tr,
+  Wrap,
+  WrapItem,
 } from "@chakra-ui/react"
 import { memo, useCallback, VFC } from "react"
 import { useHistory } from "react-router-dom"
+import { WantedCard } from "../organisms/WantedCard"
 
 const sampleData = [
   {
@@ -91,24 +94,19 @@ export const Wanteds: VFC = memo(() => {
           </Table>
         </Box>
       </Flex>
-      <Box
-        p={4}
-        w="260px"
-        h="100px"
-        bg="white"
-        borderRadius="10px"
-        shadow="md"
-        _hover={{ cursor: "pointer", opacity: 0.8 }}
-      >
-        <Stack textAlign="center">
-          <Text fontSize="lg" fontWeight="bold">
-            条件名
-          </Text>
-          <Text fontSize="sm" color="gray">
-            条件の内容
-          </Text>
-        </Stack>
-      </Box>
+      <Wrap p={{ base: 4, md: 10 }} justify="center">
+        {sampleData.map((wanted) => (
+          <WrapItem key={wanted.id} mx="auto">
+            <WantedCard
+              title={wanted.title}
+              content={wanted.content}
+              price={wanted.price}
+              applicationNum={wanted.applicationNum}
+              totalNum={wanted.totalNum}
+            />
+          </WrapItem>
+        ))}
+      </Wrap>
     </>
   )
 })
