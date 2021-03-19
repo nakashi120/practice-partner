@@ -5,9 +5,11 @@ import {
   CircularProgressLabel,
   Flex,
   Heading,
+  Stack,
   Table,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -43,49 +45,70 @@ export const Wanteds: VFC = memo(() => {
   )
 
   return (
-    <Flex align="center" justify="center" margin={8}>
-      <Box bg="white" w="4xl" p={4} borderRadius="md" shadow="md">
-        <Heading fontSize="lg" my={4}>
-          WANTEDS LIST
-        </Heading>
-        <Table fontSize="sm">
-          <Thead>
-            <Tr>
-              <Th>ID</Th>
-              <Th>TITLE</Th>
-              <Th>CONTENT</Th>
-              <Th>PRICE</Th>
-              <Th>応募状況</Th>
-              <Th></Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {sampleData.map((data) => (
+    <>
+      {" "}
+      <Flex align="center" justify="center" margin={8}>
+        <Box bg="white" w="4xl" p={4} borderRadius="md" shadow="md">
+          <Heading fontSize="lg" my={4}>
+            WANTEDS LIST
+          </Heading>
+          <Table fontSize="sm">
+            <Thead>
               <Tr>
-                <Td>{data.id}</Td>
-                <Td>{data.title}</Td>
-                <Td>{data.content}</Td>
-                <Td>{data.price}</Td>
-                <Td>
-                  <CircularProgress
-                    value={(data.applicationNum / data.totalNum) * 100}
-                    color="green.400"
-                  >
-                    <CircularProgressLabel>{`${
-                      (data.applicationNum / data.totalNum) * 100
-                    }%`}</CircularProgressLabel>
-                  </CircularProgress>
-                </Td>
-                <Td>
-                  <Button size="sm" onClick={() => onClickDetail(data.id)}>
-                    詳細
-                  </Button>
-                </Td>
+                <Th>ID</Th>
+                <Th>TITLE</Th>
+                <Th>CONTENT</Th>
+                <Th>PRICE</Th>
+                <Th>応募状況</Th>
+                <Th></Th>
               </Tr>
-            ))}
-          </Tbody>
-        </Table>
+            </Thead>
+            <Tbody>
+              {sampleData.map((data) => (
+                <Tr key={data.id}>
+                  <Td>{data.id}</Td>
+                  <Td>{data.title}</Td>
+                  <Td>{data.content}</Td>
+                  <Td>{data.price}</Td>
+                  <Td>
+                    <CircularProgress
+                      value={(data.applicationNum / data.totalNum) * 100}
+                      color="green.400"
+                    >
+                      <CircularProgressLabel>{`${
+                        (data.applicationNum / data.totalNum) * 100
+                      }%`}</CircularProgressLabel>
+                    </CircularProgress>
+                  </Td>
+                  <Td>
+                    <Button size="sm" onClick={() => onClickDetail(data.id)}>
+                      詳細
+                    </Button>
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </Box>
+      </Flex>
+      <Box
+        p={4}
+        w="260px"
+        h="100px"
+        bg="white"
+        borderRadius="10px"
+        shadow="md"
+        _hover={{ cursor: "pointer", opacity: 0.8 }}
+      >
+        <Stack textAlign="center">
+          <Text fontSize="lg" fontWeight="bold">
+            条件名
+          </Text>
+          <Text fontSize="sm" color="gray">
+            条件の内容
+          </Text>
+        </Stack>
       </Box>
-    </Flex>
+    </>
   )
 })
