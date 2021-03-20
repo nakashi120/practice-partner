@@ -16,6 +16,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react"
 import { memo, useCallback, VFC } from "react"
+import { useLoginUser } from "../../hooks/useLoginUser"
 import { WantedDetailModal } from "../organisms/wanted/WantedDetailModal"
 import { WantedCard } from "../organisms/WantedCard"
 
@@ -56,6 +57,8 @@ const sampleData = [
 
 export const Wanteds: VFC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { loginUser } = useLoginUser()
+  console.log(loginUser)
 
   const onClickWanted = useCallback(() => onOpen(), [])
 
