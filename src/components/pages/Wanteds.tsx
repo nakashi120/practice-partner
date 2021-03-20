@@ -36,6 +36,22 @@ const sampleData = [
     totalNum: 10,
     applicationNum: 7,
   },
+  {
+    id: 3,
+    title: "家庭教師の練習",
+    content: "人にものを教える練習",
+    price: 1000,
+    totalNum: 10,
+    applicationNum: 7,
+  },
+  {
+    id: 4,
+    title: "なんかの練習",
+    content: "とにかくなんでもいいから練習",
+    price: 1000,
+    totalNum: 10,
+    applicationNum: 7,
+  },
 ]
 
 export const Wanteds: VFC = memo(() => {
