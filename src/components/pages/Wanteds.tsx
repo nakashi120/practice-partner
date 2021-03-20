@@ -4,20 +4,28 @@ import {
   CircularProgress,
   CircularProgressLabel,
   Flex,
+  FormControl,
+  FormLabel,
   Heading,
+  Input,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
   Stack,
   Table,
   Tbody,
   Td,
-  Text,
   Th,
   Thead,
   Tr,
+  useDisclosure,
   Wrap,
   WrapItem,
 } from "@chakra-ui/react"
 import { memo, useCallback, VFC } from "react"
-import { useHistory } from "react-router-dom"
 import { WantedCard } from "../organisms/WantedCard"
 
 const sampleData = [
@@ -40,12 +48,16 @@ const sampleData = [
 ]
 
 export const Wanteds: VFC = memo(() => {
-  const history = useHistory()
+  // const history = useHistory()
 
-  const onClickDetail = useCallback(
-    (id: number) => history.push(`/wanteds/${id}`),
-    [history]
-  )
+  const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const onClickWanted = useCallback(() => onOpen(), [])
+
+  // const onClickDetail = useCallback(
+  //   (id: number) => history.push(`/wanteds/${id}`),
+  //   [history]
+  // )
 
   return (
     <>
@@ -84,9 +96,7 @@ export const Wanteds: VFC = memo(() => {
                     </CircularProgress>
                   </Td>
                   <Td>
-                    <Button size="sm" onClick={() => onClickDetail(data.id)}>
-                      詳細
-                    </Button>
+                    <Button size="sm">詳細</Button>
                   </Td>
                 </Tr>
               ))}
@@ -103,10 +113,26 @@ export const Wanteds: VFC = memo(() => {
               price={wanted.price}
               applicationNum={wanted.applicationNum}
               totalNum={wanted.totalNum}
+              onClick={onClickWanted}
             />
           </WrapItem>
         ))}
       </Wrap>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>ウォンテッド詳細</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <Stack>
+              <FormControl>
+                <FormLabel>案件</FormLabel>
+                <Input value="sample" isReadOnly />
+              </FormControl>
+            </Stack>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   )
 })
