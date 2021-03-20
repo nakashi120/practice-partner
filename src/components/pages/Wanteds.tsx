@@ -4,17 +4,7 @@ import {
   CircularProgress,
   CircularProgressLabel,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
-  Input,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-  Stack,
   Table,
   Tbody,
   Td,
@@ -26,6 +16,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react"
 import { memo, useCallback, VFC } from "react"
+import { WantedDetailModal } from "../organisms/wanted/WantedDetailModal"
 import { WantedCard } from "../organisms/WantedCard"
 
 const sampleData = [
@@ -48,16 +39,9 @@ const sampleData = [
 ]
 
 export const Wanteds: VFC = memo(() => {
-  // const history = useHistory()
-
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const onClickWanted = useCallback(() => onOpen(), [])
-
-  // const onClickDetail = useCallback(
-  //   (id: number) => history.push(`/wanteds/${id}`),
-  //   [history]
-  // )
 
   return (
     <>
@@ -118,21 +102,7 @@ export const Wanteds: VFC = memo(() => {
           </WrapItem>
         ))}
       </Wrap>
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>ウォンテッド詳細</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Stack>
-              <FormControl>
-                <FormLabel>案件</FormLabel>
-                <Input value="sample" isReadOnly />
-              </FormControl>
-            </Stack>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <WantedDetailModal isOpen={isOpen} onClose={onClose} />
     </>
   )
 })
