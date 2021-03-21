@@ -26,6 +26,7 @@ export const NewWantedModal: VFC<Props> = memo((props) => {
       onClose={onClose}
       autoFocus={false}
       motionPreset="slideInBottom"
+      returnFocusOnClose={false}
     >
       <ModalOverlay />
       <ModalContent pb={6}>
@@ -35,15 +36,15 @@ export const NewWantedModal: VFC<Props> = memo((props) => {
           <Stack spacing={4}>
             <FormControl>
               <FormLabel>案件</FormLabel>
-              <Input value="sample" />
+              <Input />
             </FormControl>
             <FormControl>
               <FormLabel>内容</FormLabel>
-              <Input value="sample" />
+              <Input />
             </FormControl>
             <FormControl>
               <FormLabel>費用</FormLabel>
-              <Input value="sample" />
+              <Input />
             </FormControl>
             <PrimaryButton onClick={() => alert("新規作成")}>Add</PrimaryButton>
           </Stack>
