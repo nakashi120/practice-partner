@@ -65,11 +65,9 @@ export const Wanteds: VFC = memo(() => {
   return (
     <>
       <Flex align="center" justify="center" margin={8}>
-        <Box bg="white" w="4xl" p={4} borderRadius="md" shadow="md">
-          <Heading fontSize="lg" my={4}>
-            WANTEDS LIST
-          </Heading>
-          <Table fontSize="sm">
+        {/* <Box bg="white" w="4xl" p={4} borderRadius="md" shadow="md"> */}
+        <Heading fontSize="lg">WANTEDS LIST</Heading>
+        {/* <Table fontSize="sm">
             <Thead>
               <Tr>
                 <Th>ID</Th>
@@ -103,8 +101,8 @@ export const Wanteds: VFC = memo(() => {
                 </Tr>
               ))}
             </Tbody>
-          </Table>
-        </Box>
+          </Table> */}
+        {/* </Box> */}
       </Flex>
       <Wrap p={{ base: 4, md: 10 }} justify="center">
         {sampleData.map((wanted) => (

@@ -1,4 +1,4 @@
-import { Box, Flex, Progress, Stack, Text } from "@chakra-ui/react"
+import { Box, Flex, Image, Progress, Stack, Text } from "@chakra-ui/react"
 import { memo, VFC } from "react"
 
 type Props = {
@@ -19,15 +19,21 @@ export const WantedCard: VFC<Props> = memo((props) => {
   return (
     <Box
       p={4}
-      w="250px"
-      h="200px"
+      w="260px"
+      h="310px"
       bg="white"
       borderRadius="10px"
       shadow="md"
       _hover={{ cursor: "pointer", opacity: 0.8 }}
       onClick={onClick}
     >
-      <Stack textAlign="center">
+      <Stack textAlign="center" mx="auto">
+        <Image
+          boxsize="160px"
+          h="160px"
+          src="https://source.unsplash.com/random"
+          m="auto"
+        />
         <Text fontSize="lg" fontWeight="bold">
           {title}
         </Text>
