@@ -1,10 +1,4 @@
-import {
-  Box,
-  CircularProgress,
-  CircularProgressLabel,
-  Stack,
-  Text,
-} from "@chakra-ui/react"
+import { Box, Flex, Progress, Stack, Text } from "@chakra-ui/react"
 import { memo, VFC } from "react"
 
 type Props = {
@@ -38,13 +32,26 @@ export const WantedCard: VFC<Props> = memo((props) => {
           {content}
         </Text>
         <Text fontSize="sm" color="gray">
-          {price}
+          {`${price.toLocaleString()}円`}
         </Text>
-        <Box>
-          <CircularProgress value={value} color="green.400">
+        <Flex align="center" justify="center">
+          <Box w="180px" pr={4}>
+            <Progress
+              borderRadius="lg"
+              value={value}
+              size="md"
+              colorScheme="cyan"
+            />
+          </Box>
+          <Box>
+            <Text fontSize="sm" color="gray">
+              {applicationNum}/{totalNum}
+            </Text>
+          </Box>
+        </Flex>
+        {/* <CircularProgress value={value} color="green.400">
             <CircularProgressLabel>{`${value}%`}</CircularProgressLabel>
-          </CircularProgress>
-        </Box>
+          </CircularProgress> */}
       </Stack>
     </Box>
   )

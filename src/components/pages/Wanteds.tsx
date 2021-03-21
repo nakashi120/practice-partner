@@ -43,7 +43,7 @@ const sampleData = [
     content: "人にものを教える練習",
     price: 1000,
     totalNum: 10,
-    applicationNum: 7,
+    applicationNum: 9,
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ const sampleData = [
     content: "とにかくなんでもいいから練習",
     price: 1000,
     totalNum: 10,
-    applicationNum: 7,
+    applicationNum: 4,
   },
 ]
 
@@ -60,11 +60,10 @@ export const Wanteds: VFC = memo(() => {
   const { loginUser } = useLoginUser()
   console.log(loginUser)
 
-  const onClickWanted = useCallback(() => onOpen(), [])
+  const onClickWanted = useCallback(() => onOpen(), [onOpen])
 
   return (
     <>
-      {" "}
       <Flex align="center" justify="center" margin={8}>
         <Box bg="white" w="4xl" p={4} borderRadius="md" shadow="md">
           <Heading fontSize="lg" my={4}>
