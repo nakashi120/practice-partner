@@ -13,6 +13,9 @@ type Props = {
 export const WantedCard: VFC<Props> = memo((props) => {
   const { title, content, price, totalNum, applicationNum, onClick } = props
   const value = (applicationNum / totalNum) * 100
+
+  const colorScheme = value >= 80 ? "orange" : "green"
+
   return (
     <Box
       p={4}
@@ -40,7 +43,7 @@ export const WantedCard: VFC<Props> = memo((props) => {
               borderRadius="lg"
               value={value}
               size="md"
-              colorScheme="cyan"
+              colorScheme={colorScheme}
             />
           </Box>
           <Box>
