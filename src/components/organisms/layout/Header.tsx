@@ -39,8 +39,8 @@ export const Header: VFC = memo(() => {
           _hover={{ cursor: "pointer" }}
           onClick={onClickHome}
         >
-          <Heading as="h1" fontSize={{ base: "md", md: "lg" }}>
-            練習相手募集アプリ
+          <Heading as="h1" fontSize={{ base: "md", md: "2xl" }}>
+            Practice Partner
           </Heading>
         </Flex>
         <Flex
@@ -50,9 +50,9 @@ export const Header: VFC = memo(() => {
           display={{ base: "none", md: "flex" }}
         >
           <Box pr={4}>
-            <Link onClick={onClickWanteds}>募集一覧</Link>
+            <Link onClick={onClickWanteds}>Wanteds</Link>
           </Box>
-          <Link onClick={onClickSetting}>設定</Link>
+          <Link onClick={onClickSetting}>Setting</Link>
         </Flex>
         <Spacer />
       </Flex>

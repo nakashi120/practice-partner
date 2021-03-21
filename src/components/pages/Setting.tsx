@@ -15,11 +15,13 @@ export const Setting: VFC = memo(() => {
 
   return (
     <>
+      <Flex align="center" justify="center" margin={8}>
+        <Heading fontSize="lg" my={4}>
+          SETTING
+        </Heading>
+      </Flex>
       <Flex align="center" justify="center" m={8}>
         <Box bg="white" w="4xl" p={4} borderRadius="md" shadow="md">
-          <Heading fontSize="lg" my={4}>
-            SETTING
-          </Heading>
           <Stack spacing={4} py={4} px={10}>
             <FormControl>
               <FormLabel>名前</FormLabel>

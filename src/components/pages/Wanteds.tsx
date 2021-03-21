@@ -1,16 +1,9 @@
+import { AddIcon } from "@chakra-ui/icons"
 import {
-  Box,
-  Button,
-  CircularProgress,
-  CircularProgressLabel,
   Flex,
   Heading,
-  Table,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
+  IconButton,
+  Tooltip,
   useDisclosure,
   Wrap,
   WrapItem,
@@ -64,45 +57,20 @@ export const Wanteds: VFC = memo(() => {
 
   return (
     <>
-      <Flex align="center" justify="center" margin={8}>
-        {/* <Box bg="white" w="4xl" p={4} borderRadius="md" shadow="md"> */}
-        <Heading fontSize="lg">WANTEDS LIST</Heading>
-        {/* <Table fontSize="sm">
-            <Thead>
-              <Tr>
-                <Th>ID</Th>
-                <Th>TITLE</Th>
-                <Th>CONTENT</Th>
-                <Th>PRICE</Th>
-                <Th>応募状況</Th>
-                <Th></Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {sampleData.map((data) => (
-                <Tr key={data.id}>
-                  <Td>{data.id}</Td>
-                  <Td>{data.title}</Td>
-                  <Td>{data.content}</Td>
-                  <Td>{data.price}</Td>
-                  <Td>
-                    <CircularProgress
-                      value={(data.applicationNum / data.totalNum) * 100}
-                      color="green.400"
-                    >
-                      <CircularProgressLabel>{`${
-                        (data.applicationNum / data.totalNum) * 100
-                      }%`}</CircularProgressLabel>
-                    </CircularProgress>
-                  </Td>
-                  <Td>
-                    <Button size="sm">詳細</Button>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table> */}
-        {/* </Box> */}
+      <Flex align="center" justify="center" mt={8}>
+        <Heading fontSize="lg" pr="4">
+          WANTEDS
+        </Heading>
+        <Tooltip hasArrow label="New Item">
+          <IconButton
+            colorScheme="teal"
+            aria-label="NewItem"
+            size="lg"
+            icon={<AddIcon />}
+            _hover={{ cursor: "pointer", opacity: 0.8 }}
+            borderRadius="full"
+          />
+        </Tooltip>
       </Flex>
       <Wrap p={{ base: 4, md: 10 }} justify="center">
         {sampleData.map((wanted) => (
