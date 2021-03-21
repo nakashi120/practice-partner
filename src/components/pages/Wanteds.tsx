@@ -11,6 +11,7 @@ import {
 import { memo, useCallback, VFC } from "react"
 import { useLoginUser } from "../../hooks/useLoginUser"
 import { WantedDetailModal } from "../organisms/wanted/WantedDetailModal"
+import { NewWantedModal } from "../organisms/wanted/NewWantedModal"
 import { WantedCard } from "../organisms/WantedCard"
 
 const sampleData = [
@@ -49,11 +50,28 @@ const sampleData = [
 ]
 
 export const Wanteds: VFC = memo(() => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {
+    isOpen: isOpenWantedDetailModal,
+    onOpen: onOpenWantedDetailModal,
+    onClose: onCloseWantedDetailModal,
+  } = useDisclosure()
+
+  const {
+    isOpen: isOpenNewWantedModal,
+    onOpen: onOpenNewWantedModal,
+    onClose: onCloseNewWantedModal,
+  } = useDisclosure()
+
   const { loginUser } = useLoginUser()
   console.log(loginUser)
 
-  const onClickWanted = useCallback(() => onOpen(), [onOpen])
+  const onClickWanted = useCallback(() => onOpenWantedDetailModal(), [
+    onOpenWantedDetailModal,
+  ])
+
+  const onClickNewWanted = useCallback(() => onOpenNewWantedModal(), [
+    onOpenNewWantedModal,
+  ])
 
   return (
     <>
@@ -69,6 +87,7 @@ export const Wanteds: VFC = memo(() => {
             icon={<AddIcon />}
             _hover={{ cursor: "pointer", opacity: 0.8 }}
             borderRadius="full"
+            onClick={onClickNewWanted}
           />
         </Tooltip>
       </Flex>
@@ -86,7 +105,14 @@ export const Wanteds: VFC = memo(() => {
           </WrapItem>
         ))}
       </Wrap>
-      <WantedDetailModal isOpen={isOpen} onClose={onClose} />
+      <WantedDetailModal
+        isOpen={isOpenWantedDetailModal}
+        onClose={onCloseWantedDetailModal}
+      />
+      <NewWantedModal
+        isOpen={isOpenNewWantedModal}
+        onClose={onCloseNewWantedModal}
+      />
     </>
   )
 })
