@@ -30,7 +30,7 @@ export const NewWantedModal: VFC<Props> = memo((props) => {
     >
       <ModalOverlay />
       <ModalContent pb={6}>
-        <ModalHeader>ウォンテッド詳細</ModalHeader>
+        <ModalHeader>New Wanted</ModalHeader>
         <ModalCloseButton />
         <ModalBody mx={4}>
           <Stack spacing={4}>

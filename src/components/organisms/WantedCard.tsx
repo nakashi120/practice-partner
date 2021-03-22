@@ -2,16 +2,17 @@ import { Box, Flex, Image, Progress, Stack, Text } from "@chakra-ui/react"
 import { memo, VFC } from "react"
 
 type Props = {
+  id: number
   title: string
   content: string
   price: number
   totalNum: number
   applicationNum: number
-  onClick: () => void
+  onClick: (id: number) => void
 }
 
 export const WantedCard: VFC<Props> = memo((props) => {
-  const { title, content, price, totalNum, applicationNum, onClick } = props
+  const { id, title, content, price, totalNum, applicationNum, onClick } = props
   const value = (applicationNum / totalNum) * 100
 
   const colorScheme = value >= 80 ? "orange" : "green"
@@ -25,7 +26,7 @@ export const WantedCard: VFC<Props> = memo((props) => {
       borderRadius="10px"
       shadow="md"
       _hover={{ cursor: "pointer", opacity: 0.8 }}
-      onClick={onClick}
+      onClick={() => onClick(id)}
     >
       <Stack textAlign="center" mx="auto">
         <Image

@@ -11,14 +11,16 @@ import {
   Stack,
 } from "@chakra-ui/react"
 import { memo, VFC } from "react"
+import { Wanted } from "../../../types/api/wanted"
 
 type Props = {
+  wanted: Wanted | null
   isOpen: boolean
   onClose: () => void
 }
 
 export const WantedDetailModal: VFC<Props> = memo((props) => {
-  const { isOpen, onClose } = props
+  const { wanted, isOpen, onClose } = props
   return (
     <Modal
       isOpen={isOpen}
@@ -34,15 +36,15 @@ export const WantedDetailModal: VFC<Props> = memo((props) => {
           <Stack spacing={4}>
             <FormControl>
               <FormLabel>案件</FormLabel>
-              <Input value="sample" isReadOnly />
+              <Input value={wanted?.title} isReadOnly />
             </FormControl>
             <FormControl>
               <FormLabel>内容</FormLabel>
-              <Input value="sample" isReadOnly />
+              <Input value={wanted?.content} isReadOnly />
             </FormControl>
             <FormControl>
               <FormLabel>費用</FormLabel>
-              <Input value="sample" isReadOnly />
+              <Input value={wanted?.price} isReadOnly />
             </FormControl>
           </Stack>
         </ModalBody>

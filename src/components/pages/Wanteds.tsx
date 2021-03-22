@@ -13,6 +13,7 @@ import { useLoginUser } from "../../hooks/useLoginUser"
 import { WantedDetailModal } from "../organisms/wanted/WantedDetailModal"
 import { NewWantedModal } from "../organisms/wanted/NewWantedModal"
 import { WantedCard } from "../organisms/WantedCard"
+import { useSelectWanted } from "../../hooks/useSelectWanted"
 
 const sampleData = [
   {
@@ -63,11 +64,19 @@ export const Wanteds: VFC = memo(() => {
   } = useDisclosure()
 
   const { loginUser } = useLoginUser()
-  console.log(loginUser)
 
-  const onClickWanted = useCallback(() => onOpenWantedDetailModal(), [
-    onOpenWantedDetailModal,
-  ])
+  const { onSelectWanted, selectedWanted } = useSelectWanted()
+
+  const onClickWanted = useCallback(
+    (id: number) => {
+      onSelectWanted({
+        id,
+        wanteds: sampleData,
+        onOpen: onOpenWantedDetailModal,
+      })
+    },
+    [onOpenWantedDetailModal, onSelectWanted]
+  )
 
   const onClickNewWanted = useCallback(() => onOpenNewWantedModal(), [
     onOpenNewWantedModal,
@@ -95,6 +104,7 @@ export const Wanteds: VFC = memo(() => {
         {sampleData.map((wanted) => (
           <WrapItem key={wanted.id} mx="auto">
             <WantedCard
+              id={wanted.id}
               title={wanted.title}
               content={wanted.content}
               price={wanted.price}
@@ -106,6 +116,7 @@ export const Wanteds: VFC = memo(() => {
         ))}
       </Wrap>
       <WantedDetailModal
+        wanted={selectedWanted}
         isOpen={isOpenWantedDetailModal}
         onClose={onCloseWantedDetailModal}
       />
