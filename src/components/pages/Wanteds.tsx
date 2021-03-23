@@ -64,6 +64,7 @@ export const Wanteds: VFC = memo(() => {
   } = useDisclosure()
 
   const { loginUser } = useLoginUser()
+  console.log(loginUser)
 
   const { onSelectWanted, selectedWanted } = useSelectWanted()
 
